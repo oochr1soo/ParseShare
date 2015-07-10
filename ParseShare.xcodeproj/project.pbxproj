@@ -26,6 +26,8 @@
 		E546C9BC1B4EE2E400D8DD6D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E546C9B11B4EE2E400D8DD6D /* SystemConfiguration.framework */; };
 		E546C9C01B4EE33500D8DD6D /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E546C9BE1B4EE33500D8DD6D /* Bolts.framework */; };
 		E546C9C11B4EE33500D8DD6D /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E546C9BF1B4EE33500D8DD6D /* Parse.framework */; };
+		FDD1D8411B4F1A7100D7D415 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD1D8401B4F1A7100D7D415 /* SignUpViewController.swift */; };
+		FDD1D8431B4FE6DB00D7D415 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD1D8421B4FE6DB00D7D415 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		E546C9B11B4EE2E400D8DD6D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E546C9BE1B4EE33500D8DD6D /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		E546C9BF1B4EE33500D8DD6D /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		FDD1D8401B4F1A7100D7D415 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		FDD1D8421B4FE6DB00D7D415 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +123,8 @@
 			children = (
 				E546C9871B4EB49600D8DD6D /* AppDelegate.swift */,
 				E546C9891B4EB49600D8DD6D /* LoginViewController.swift */,
+				FDD1D8401B4F1A7100D7D415 /* SignUpViewController.swift */,
+				FDD1D8421B4FE6DB00D7D415 /* HomeViewController.swift */,
 				E546C98B1B4EB49600D8DD6D /* Main.storyboard */,
 				E546C98E1B4EB49600D8DD6D /* Images.xcassets */,
 				E546C9901B4EB49600D8DD6D /* LaunchScreen.xib */,
@@ -273,8 +279,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDD1D8411B4F1A7100D7D415 /* SignUpViewController.swift in Sources */,
 				E546C98A1B4EB49600D8DD6D /* LoginViewController.swift in Sources */,
 				E546C9881B4EB49600D8DD6D /* AppDelegate.swift in Sources */,
+				FDD1D8431B4FE6DB00D7D415 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,6 +486,7 @@
 				E546C9A31B4EB49600D8DD6D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E546C9A41B4EB49600D8DD6D /* Build configuration list for PBXNativeTarget "ParseShareTests" */ = {
 			isa = XCConfigurationList;
@@ -486,6 +495,7 @@
 				E546C9A61B4EB49600D8DD6D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

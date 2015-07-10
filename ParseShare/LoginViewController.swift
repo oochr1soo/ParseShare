@@ -35,6 +35,9 @@ class LoginViewController: UIViewController {
     @IBAction func loginButtonPressed(sender: UIButton) {
         // Log user in
         // Verify credentials against Parse
+        if emailAddressTextField.text == "cc@cc.com" && passwordTextField.text == "test" {
+            performSegueWithIdentifier("HomeSegue", sender: nil)
+        }
     }
 
     @IBAction func signUpButtonPressed(sender: UIButton) {
