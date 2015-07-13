@@ -51,6 +51,7 @@ class HomeViewController: UITableViewController {
 
     @IBAction func logoutButtonPressed(sender: UIBarButtonItem) {
         // Clear parse session and pop user back to rootVC
+        PFUser.logOut()
         self.navigationController?.popToRootViewControllerAnimated(true)
     }
 }

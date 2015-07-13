@@ -28,6 +28,7 @@
 		E546C9C11B4EE33500D8DD6D /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E546C9BF1B4EE33500D8DD6D /* Parse.framework */; };
 		FDD1D8411B4F1A7100D7D415 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD1D8401B4F1A7100D7D415 /* SignUpViewController.swift */; };
 		FDD1D8431B4FE6DB00D7D415 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD1D8421B4FE6DB00D7D415 /* HomeViewController.swift */; };
+		FDDDF9891B53D79A00D80617 /* ItemDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDDF9881B53D79A00D80617 /* ItemDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 		E546C9BF1B4EE33500D8DD6D /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		FDD1D8401B4F1A7100D7D415 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		FDD1D8421B4FE6DB00D7D415 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		FDDDF9851B505E1300D80617 /* ParseShare-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ParseShare-Bridging-Header.h"; sourceTree = "<group>"; };
+		FDDDF9881B53D79A00D80617 /* ItemDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,10 +125,12 @@
 			isa = PBXGroup;
 			children = (
 				E546C9871B4EB49600D8DD6D /* AppDelegate.swift */,
+				FDDDF9851B505E1300D80617 /* ParseShare-Bridging-Header.h */,
 				E546C9891B4EB49600D8DD6D /* LoginViewController.swift */,
 				FDD1D8401B4F1A7100D7D415 /* SignUpViewController.swift */,
 				FDD1D8421B4FE6DB00D7D415 /* HomeViewController.swift */,
 				E546C98B1B4EB49600D8DD6D /* Main.storyboard */,
+				FDDDF9881B53D79A00D80617 /* ItemDetailsViewController.swift */,
 				E546C98E1B4EB49600D8DD6D /* Images.xcassets */,
 				E546C9901B4EB49600D8DD6D /* LaunchScreen.xib */,
 				E546C9851B4EB49600D8DD6D /* Supporting Files */,
@@ -281,6 +286,7 @@
 			files = (
 				FDD1D8411B4F1A7100D7D415 /* SignUpViewController.swift in Sources */,
 				E546C98A1B4EB49600D8DD6D /* LoginViewController.swift in Sources */,
+				FDDDF9891B53D79A00D80617 /* ItemDetailsViewController.swift in Sources */,
 				E546C9881B4EB49600D8DD6D /* AppDelegate.swift in Sources */,
 				FDD1D8431B4FE6DB00D7D415 /* HomeViewController.swift in Sources */,
 			);
@@ -409,6 +415,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ParseShare.xcodeproj",
@@ -416,6 +423,8 @@
 				INFOPLIST_FILE = ParseShare/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ParseShare/ParseShare-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -423,6 +432,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ParseShare.xcodeproj",
@@ -430,6 +440,7 @@
 				INFOPLIST_FILE = ParseShare/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ParseShare/ParseShare-Bridging-Header.h";
 			};
 			name = Release;
 		};

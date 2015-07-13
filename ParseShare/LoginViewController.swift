@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Parse
-import Bolts
 
 class LoginViewController: UIViewController {
     
@@ -23,8 +21,15 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        println("Hello World!")
+        
+        // Check if user is logged in
+        // If So, segue to HomeViewController
+        
+        if let user = PFUser.currentUser() {
+            if user.isAuthenticated() {
+                performSegueWithIdentifier("HomeSegue", sender: nil)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,8 +40,12 @@ class LoginViewController: UIViewController {
     @IBAction func loginButtonPressed(sender: UIButton) {
         // Log user in
         // Verify credentials against Parse
-        if emailAddressTextField.text == "cc@cc.com" && passwordTextField.text == "test" {
-            performSegueWithIdentifier("HomeSegue", sender: nil)
+        PFUser.logInWithUsernameInBackground(emailAddressTextField.text, password: passwordTextField.text) { (user, error) -> Void in
+            if user != nil {
+                self.performSegueWithIdentifier("HomeSegue", sender: nil)
+            } else if let error = error {
+                println(error)
+            }
         }
     }
 

@@ -33,6 +33,19 @@ class SignUpViewController: UIViewController {
     @IBAction func doneButtonPressed(sender: UIBarButtonItem) {
         // Sign up User then log them in
         // Segue to Home Screen
+        var user = PFUser()
+        user.username = emailAddressTextField.text
+        user.password = passwordTextField.text
+        user["displayName"] = displayNameTextField.text
+        
+        user.signUpInBackgroundWithBlock { (succeeded, error) -> Void in
+            if let error = error {
+                println(error.userInfo?["error"])
+            } else {
+                self.performSegueWithIdentifier("SignedUpSegue", sender: nil)
+            }
+        }
+        
     }
     
     @IBAction func cancelButtonPressed(sender: UIBarButtonItem) {
