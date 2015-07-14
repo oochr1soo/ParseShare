@@ -212,6 +212,35 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="zf8-8K-9hF">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Ozz-0K-CmI">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ozz-0K-CmI" id="5sQ-x2-g9Y">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dl5-aP-Zkc">
+                                                    <rect key="frame" x="543" y="6" width="51" height="31"/>
+                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Readable By All?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JkI-b6-FIY">
+                                                    <rect key="frame" x="8" y="11" width="131" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="dl5-aP-Zkc" firstAttribute="top" secondItem="5sQ-x2-g9Y" secondAttribute="top" constant="6" id="4mP-2u-57x"/>
+                                                <constraint firstAttribute="trailing" secondItem="dl5-aP-Zkc" secondAttribute="trailing" constant="8" id="5gp-9n-FQf"/>
+                                                <constraint firstAttribute="bottom" secondItem="dl5-aP-Zkc" secondAttribute="bottom" constant="6.5" id="BsD-oy-Tgb"/>
+                                                <constraint firstItem="JkI-b6-FIY" firstAttribute="leading" secondItem="5sQ-x2-g9Y" secondAttribute="leading" constant="8" id="gm9-0t-HD1"/>
+                                                <constraint firstItem="JkI-b6-FIY" firstAttribute="top" secondItem="5sQ-x2-g9Y" secondAttribute="top" constant="11" id="tua-vG-dJJ"/>
+                                                <constraint firstAttribute="bottom" secondItem="JkI-b6-FIY" secondAttribute="bottom" constant="11.5" id="zA7-Kr-Pld"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="Zlb-BV-Ioj" id="uBQ-po-Drg"/>
@@ -227,6 +256,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="itemDescriptionTextfield" destination="ZRE-JY-wSn" id="3Ma-5h-90S"/>
+                        <outlet property="publicReadSwitch" destination="dl5-aP-Zkc" id="msa-jm-PfY"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7iG-4r-Z6k" userLabel="First Responder" sceneMemberID="firstResponder"/>

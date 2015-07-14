@@ -11,6 +11,7 @@ import UIKit
 class ItemDetailsViewController: UITableViewController, UITextFieldDelegate {
 
     @IBOutlet weak var itemDescriptionTextfield: UITextField!
+    @IBOutlet weak var publicReadSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +52,8 @@ class ItemDetailsViewController: UITableViewController, UITextFieldDelegate {
     }
     
     func saveItem() {
-        let item = Items(description: itemDescriptionTextfield.text, user: PFUser.currentUser()!)
+        let item = Items(description: itemDescriptionTextfield.text, user: PFUser.currentUser()!, publicRead: publicReadSwitch.on)
+        
         item.saveInBackgroundWithBlock { (succeeded, error) -> Void in
             if succeeded {
                 self.navigationController?.popViewControllerAnimated(true)

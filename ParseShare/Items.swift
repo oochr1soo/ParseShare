@@ -11,6 +11,7 @@ import Foundation
 class Items : PFObject {
     @NSManaged var itemDescription: String
     @NSManaged var user: PFUser
+    @NSManaged var publicRead: Bool
     
     override class func query() -> PFQuery? {
         let query = PFQuery(className: Items.parseClassName())
@@ -18,11 +19,18 @@ class Items : PFObject {
         return query
     }
     
-    init(description: String, user: PFUser) {
+    init(description: String, user: PFUser, publicRead: Bool) {
         super.init()
         
         itemDescription = description
         self.user = user
+        self.publicRead = publicRead
+        
+        let acl = PFACL()
+        acl.setPublicReadAccess(publicRead)
+        acl.setWriteAccess(true, forUser: self.user)
+        acl.setReadAccess(true, forRole: self.user)
+        self.ACL = acl
     }
     
     override init() {

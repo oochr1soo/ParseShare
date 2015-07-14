@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.setApplicationId("0blFy7SRDxg0PXg7OM7t2KK4Mz7USCXbH6TF5DSM", clientKey: "zIHE6R0PDxIg5La76qV3urQbDJ7Kg9oAh615PeBu")
         
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+        PFACL.setDefaultACL(PFACL(), withAccessForCurrentUser: true)
         
         return true
     }
