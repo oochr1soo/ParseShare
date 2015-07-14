@@ -8,13 +8,20 @@
 
 import UIKit
 
-class ItemDetailsViewController: UITableViewController {
+class ItemDetailsViewController: UITableViewController, UITextFieldDelegate {
 
     @IBOutlet weak var itemDescriptionTextfield: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("hideKeyboard:"))
+        gestureRecognizer.cancelsTouchesInView = false
+        tableView.addGestureRecognizer(gestureRecognizer)
+        
+        itemDescriptionTextfield.delegate = self
+        
+        itemDescriptionTextfield.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,10 +29,52 @@ class ItemDetailsViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func cancelButtonPressed(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
+    // MARK: - UITableView Delegate
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 0 && indexPath.row == 0 {
+            itemDescriptionTextfield.becomeFirstResponder()
+        }
     }
     
+    // MARK: - Helper Methods
+    
+    func hideKeyboard(gestureRecognizer: UIGestureRecognizer) {
+        let point = gestureRecognizer.locationInView(tableView)
+        let indexPath = tableView.indexPathForRowAtPoint(point)
+        
+        if indexPath != nil && indexPath!.section == 0 && indexPath!.row == 0 {
+            return
+        }
+        
+        itemDescriptionTextfield.resignFirstResponder()
+    }
+    
+    func saveItem() {
+        let item = Items(description: itemDescriptionTextfield.text, user: PFUser.currentUser()!)
+        item.saveInBackgroundWithBlock { (succeeded, error) -> Void in
+            if succeeded {
+                self.navigationController?.popViewControllerAnimated(true)
+            } else {
+                println(error)
+            }
+        }
+    }
+    
+    // MARK: - Actions
+    
     @IBAction func doneButtonPressed(sender: UIBarButtonItem) {
+        itemDescriptionTextfield.resignFirstResponder()
+        
+        saveItem()
+    }
+    
+    // MARK: - UITextFieldDelegate
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        itemDescriptionTextfield.resignFirstResponder()
+        
+        return true
+        
     }
 }

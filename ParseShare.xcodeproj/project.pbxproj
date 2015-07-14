@@ -29,6 +29,9 @@
 		FDD1D8411B4F1A7100D7D415 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD1D8401B4F1A7100D7D415 /* SignUpViewController.swift */; };
 		FDD1D8431B4FE6DB00D7D415 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD1D8421B4FE6DB00D7D415 /* HomeViewController.swift */; };
 		FDDDF9891B53D79A00D80617 /* ItemDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDDF9881B53D79A00D80617 /* ItemDetailsViewController.swift */; };
+		FDDDF98B1B54653000D80617 /* Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDDF98A1B54653000D80617 /* Items.swift */; };
+		FDDDF98D1B55527100D80617 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDDDF98C1B55527100D80617 /* ParseUI.framework */; };
+		FDDDF98F1B5555D700D80617 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDDF98E1B5555D700D80617 /* ItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,9 @@
 		FDD1D8421B4FE6DB00D7D415 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		FDDDF9851B505E1300D80617 /* ParseShare-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ParseShare-Bridging-Header.h"; sourceTree = "<group>"; };
 		FDDDF9881B53D79A00D80617 /* ItemDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailsViewController.swift; sourceTree = "<group>"; };
+		FDDDF98A1B54653000D80617 /* Items.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Items.swift; sourceTree = "<group>"; };
+		FDDDF98C1B55527100D80617 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		FDDDF98E1B5555D700D80617 /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +84,7 @@
 			files = (
 				E546C9B21B4EE2E400D8DD6D /* AudioToolbox.framework in Frameworks */,
 				E546C9B31B4EE2E400D8DD6D /* CFNetwork.framework in Frameworks */,
+				FDDDF98D1B55527100D80617 /* ParseUI.framework in Frameworks */,
 				E546C9B41B4EE2E400D8DD6D /* CoreGraphics.framework in Frameworks */,
 				E546C9C01B4EE33500D8DD6D /* Bolts.framework in Frameworks */,
 				E546C9B51B4EE2E400D8DD6D /* CoreLocation.framework in Frameworks */,
@@ -130,7 +137,9 @@
 				FDD1D8401B4F1A7100D7D415 /* SignUpViewController.swift */,
 				FDD1D8421B4FE6DB00D7D415 /* HomeViewController.swift */,
 				E546C98B1B4EB49600D8DD6D /* Main.storyboard */,
+				FDDDF98E1B5555D700D80617 /* ItemCell.swift */,
 				FDDDF9881B53D79A00D80617 /* ItemDetailsViewController.swift */,
+				FDDDF98A1B54653000D80617 /* Items.swift */,
 				E546C98E1B4EB49600D8DD6D /* Images.xcassets */,
 				E546C9901B4EB49600D8DD6D /* LaunchScreen.xib */,
 				E546C9851B4EB49600D8DD6D /* Supporting Files */,
@@ -166,6 +175,7 @@
 		E546C9BD1B4EE30F00D8DD6D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FDDDF98C1B55527100D80617 /* ParseUI.framework */,
 				E546C9BE1B4EE33500D8DD6D /* Bolts.framework */,
 				E546C9BF1B4EE33500D8DD6D /* Parse.framework */,
 				E546C9A71B4EE2E400D8DD6D /* AudioToolbox.framework */,
@@ -288,6 +298,8 @@
 				E546C98A1B4EB49600D8DD6D /* LoginViewController.swift in Sources */,
 				FDDDF9891B53D79A00D80617 /* ItemDetailsViewController.swift in Sources */,
 				E546C9881B4EB49600D8DD6D /* AppDelegate.swift in Sources */,
+				FDDDF98F1B5555D700D80617 /* ItemCell.swift in Sources */,
+				FDDDF98B1B54653000D80617 /* Items.swift in Sources */,
 				FDD1D8431B4FE6DB00D7D415 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

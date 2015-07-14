@@ -80,7 +80,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="lUB-rX-dfC">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="lUB-rX-dfC" customClass="PFTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lUB-rX-dfC" id="RJw-4V-SIV">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -101,10 +101,14 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="O5V-6d-kSx">
                             <connections>
-                                <segue destination="Zlb-BV-Ioj" kind="show" identifier="ItemDetailsSegue" id="YIq-b3-f3b"/>
+                                <segue destination="Zlb-BV-Ioj" kind="show" identifier="ItemDetailsSegue" id="AOd-zf-UDR"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="parseClassName" value="Items"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="paginationEnabled" value="NO"/>
+                    </userDefinedRuntimeAttributes>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i0P-nj-ULf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -187,7 +191,7 @@
                         <sections>
                             <tableViewSection id="GCg-ui-E9m">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="aWD-uI-fMn">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="aWD-uI-fMn">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aWD-uI-fMn" id="OjX-dU-0YD">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -195,7 +199,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="item description" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZRE-JY-wSn">
                                                     <rect key="frame" x="8" y="7" width="584" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -215,11 +219,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Add Item" id="CKT-LU-9Bs">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="2nf-7A-TBo">
-                            <connections>
-                                <action selector="cancelButtonPressed:" destination="Zlb-BV-Ioj" id="iON-6X-cpN"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="sHg-j4-6tb">
                             <connections>
                                 <action selector="doneButtonPressed:" destination="Zlb-BV-Ioj" id="By6-Ag-kAI"/>

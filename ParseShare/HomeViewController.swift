@@ -8,16 +8,20 @@
 
 import UIKit
 
-class HomeViewController: UITableViewController {
+class HomeViewController: PFQueryTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        loadObjects()
+    }
+    
+    override func queryForTable() -> PFQuery {
+        let query = Items.query()
+        return query!
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,25 +31,17 @@ class HomeViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
-        return 1
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
-        return 1
-    }
-
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
-
-        // Configure the cell...
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as? PFTableViewCell
         
-        cell.textLabel!.text = "Test"
-
+//        var separator = CALayer()
+//        separator.backgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.2).CGColor
+//        separator.frame = CGRectMake(0, 44, self.view.frame.width, 1)
+//        cell!.layer.addSublayer(separator)
+        
+        let item = object as! Items
+        cell!.textLabel!.text = item.itemDescription
+        
         return cell
     }
 
