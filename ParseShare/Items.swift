@@ -29,7 +29,7 @@ class Items : PFObject {
         let acl = PFACL()
         acl.setPublicReadAccess(publicRead)
         acl.setWriteAccess(true, forUser: self.user)
-        acl.setReadAccess(true, forRole: self.user)
+        acl.setReadAccess(true, forUser: self.user)
         self.ACL = acl
     }
     
