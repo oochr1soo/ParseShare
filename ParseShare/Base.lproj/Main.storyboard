@@ -76,7 +76,7 @@
             <objects>
                 <tableViewController id="Eyw-Us-EAF" customClass="HomeViewController" customModule="ParseShare" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="vX8-gp-e22">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -92,7 +92,15 @@
                             <outlet property="delegate" destination="Eyw-Us-EAF" id="kha-oo-5fu"/>
                         </connections>
                     </tableView>
-                    <toolbarItems/>
+                    <toolbarItems>
+                        <barButtonItem title="Permissions" id="vzQ-Uw-SXF">
+                            <connections>
+                                <segue destination="TNL-8I-pHd" kind="show" identifier="PermissionsSegue" id="Igy-iu-thB"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="03t-qp-Etw"/>
+                        <barButtonItem title="Invites" id="GrE-DO-7dL"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="kd5-gw-0Ea">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="p3B-yv-9HK">
                             <connections>
@@ -105,6 +113,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="parseClassName" value="Items"/>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="paginationEnabled" value="NO"/>
@@ -113,6 +122,51 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i0P-nj-ULf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1064" y="1175"/>
+        </scene>
+        <!--Permissions-->
+        <scene sceneID="7ez-UR-hD0">
+            <objects>
+                <viewController id="TNL-8I-pHd" customClass="PermissionsViewController" customModule="ParseShare" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nzl-kc-aOR"/>
+                        <viewControllerLayoutGuide type="bottom" id="bBd-Sl-9jL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pU3-51-dHr">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jZC-u0-Ylj">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <searchBar key="tableFooterView" contentMode="redraw" id="YaZ-49-BEd">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </searchBar>
+                                <connections>
+                                    <outlet property="dataSource" destination="TNL-8I-pHd" id="u0V-8X-3X2"/>
+                                    <outlet property="delegate" destination="TNL-8I-pHd" id="CpP-1X-GF1"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jZC-u0-Ylj" firstAttribute="top" secondItem="pU3-51-dHr" secondAttribute="top" id="UaJ-la-eU8"/>
+                            <constraint firstItem="bBd-Sl-9jL" firstAttribute="top" secondItem="jZC-u0-Ylj" secondAttribute="bottom" id="aqV-9e-GNH"/>
+                            <constraint firstAttribute="trailing" secondItem="jZC-u0-Ylj" secondAttribute="trailing" id="vLv-WY-3m5"/>
+                            <constraint firstItem="jZC-u0-Ylj" firstAttribute="leading" secondItem="pU3-51-dHr" secondAttribute="leading" id="yT4-Fn-45C"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Permissions" id="vmb-GO-EJN"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="searchBar" destination="YaZ-49-BEd" id="rui-Mp-fyu"/>
+                        <outlet property="tableView" destination="jZC-u0-Ylj" id="yC6-d9-ogp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e0I-Ia-yib" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1064" y="1887"/>
         </scene>
         <!--Register-->
         <scene sceneID="pDF-LT-pRJ">
@@ -254,6 +308,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="itemDescriptionTextfield" destination="ZRE-JY-wSn" id="3Ma-5h-90S"/>
                         <outlet property="publicReadSwitch" destination="dl5-aP-Zkc" id="msa-jm-PfY"/>

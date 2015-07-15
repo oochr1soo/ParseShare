@@ -13,6 +13,7 @@ class HomeViewController: PFQueryTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+        navigationController?.toolbarHidden = false
     }
     
     override func viewWillAppear(animated: Bool) {
