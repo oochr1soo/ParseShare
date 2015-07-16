@@ -34,6 +34,10 @@
 		FDDDF98F1B5555D700D80617 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDDF98E1B5555D700D80617 /* ItemCell.swift */; };
 		FDDDF9911B55B90D00D80617 /* PermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDDF9901B55B90D00D80617 /* PermissionsViewController.swift */; };
 		FDDDF9931B55BB0E00D80617 /* UserSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDDF9921B55BB0E00D80617 /* UserSearch.swift */; };
+		FDDDF9951B5704B100D80617 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDDDF9941B5704B100D80617 /* NothingFoundCell.xib */; };
+		FDDDF9971B57050200D80617 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDDDF9961B57050200D80617 /* LoadingCell.xib */; };
+		FDDDF9991B57057000D80617 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDDDF9981B57057000D80617 /* SearchResultCell.xib */; };
+		FDDDF99B1B57C98400D80617 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDDF99A1B57C98400D80617 /* SearchResultCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +83,10 @@
 		FDDDF98E1B5555D700D80617 /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		FDDDF9901B55B90D00D80617 /* PermissionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionsViewController.swift; sourceTree = "<group>"; };
 		FDDDF9921B55BB0E00D80617 /* UserSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSearch.swift; sourceTree = "<group>"; };
+		FDDDF9941B5704B100D80617 /* NothingFoundCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
+		FDDDF9961B57050200D80617 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
+		FDDDF9981B57057000D80617 /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
+		FDDDF99A1B57C98400D80617 /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +149,10 @@
 				FDD1D8401B4F1A7100D7D415 /* SignUpViewController.swift */,
 				FDD1D8421B4FE6DB00D7D415 /* HomeViewController.swift */,
 				FDDDF9901B55B90D00D80617 /* PermissionsViewController.swift */,
+				FDDDF9981B57057000D80617 /* SearchResultCell.xib */,
+				FDDDF99A1B57C98400D80617 /* SearchResultCell.swift */,
+				FDDDF9941B5704B100D80617 /* NothingFoundCell.xib */,
+				FDDDF9961B57050200D80617 /* LoadingCell.xib */,
 				FDDDF9921B55BB0E00D80617 /* UserSearch.swift */,
 				E546C98B1B4EB49600D8DD6D /* Main.storyboard */,
 				FDDDF98E1B5555D700D80617 /* ItemCell.swift */,
@@ -280,8 +292,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDDDF9951B5704B100D80617 /* NothingFoundCell.xib in Resources */,
 				E546C98D1B4EB49600D8DD6D /* Main.storyboard in Resources */,
 				E546C9921B4EB49600D8DD6D /* LaunchScreen.xib in Resources */,
+				FDDDF9971B57050200D80617 /* LoadingCell.xib in Resources */,
+				FDDDF9991B57057000D80617 /* SearchResultCell.xib in Resources */,
 				E546C98F1B4EB49600D8DD6D /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,6 +319,7 @@
 				E546C98A1B4EB49600D8DD6D /* LoginViewController.swift in Sources */,
 				FDDDF9891B53D79A00D80617 /* ItemDetailsViewController.swift in Sources */,
 				FDDDF9931B55BB0E00D80617 /* UserSearch.swift in Sources */,
+				FDDDF99B1B57C98400D80617 /* SearchResultCell.swift in Sources */,
 				E546C9881B4EB49600D8DD6D /* AppDelegate.swift in Sources */,
 				FDDDF98F1B5555D700D80617 /* ItemCell.swift in Sources */,
 				FDDDF9911B55B90D00D80617 /* PermissionsViewController.swift in Sources */,

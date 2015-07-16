@@ -20,5 +20,7 @@ class UserSearch {
     
     private(set) var state: State = .NotSearchedYet
     
-    
+    func performSearchForText(text: String) {
+        state = .Loading
+    }
 }

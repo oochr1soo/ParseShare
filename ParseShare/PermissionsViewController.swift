@@ -31,8 +31,19 @@ class PermissionsViewController: UIViewController, UITableViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        // Load different cell XIBs
+        
+        var cellNib = UINib(nibName: TableViewCellIdentifiers.searchResultCell, bundle: nil)
+        tableView.registerNib(cellNib, forCellReuseIdentifier: TableViewCellIdentifiers.searchResultCell)
+        
+        cellNib = UINib(nibName: TableViewCellIdentifiers.nothingFoundCell, bundle: nil)
+        tableView.registerNib(cellNib, forCellReuseIdentifier: TableViewCellIdentifiers.nothingFoundCell)
+        
+        cellNib = UINib(nibName: TableViewCellIdentifiers.loadingCell, bundle: nil)
+        tableView.registerNib(cellNib, forCellReuseIdentifier: TableViewCellIdentifiers.loadingCell)
+        
+        tableView.contentInset = UIEdgeInsets(top: 44, left: 0, bottom: 0, right: 0)
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,12 +76,12 @@ class PermissionsViewController: UIViewController, UITableViewDataSource {
         case .Loading:
             let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellIdentifiers.loadingCell, forIndexPath: indexPath) as! UITableViewCell
             
-            let spinner = cell.viewWithTag(100) as! UIActivityIndicatorView
-            spinner.startAnimating()
+//            let spinner = cell.viewWithTag(100) as! UIActivityIndicatorView
+//            spinner.startAnimating()
             
             return cell
         case .Results(let list):
-            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellIdentifiers.searchResultCell, forIndexPath: indexPath) as! UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellIdentifiers.searchResultCell, forIndexPath: indexPath) as! SearchResultCell
             
             cell.textLabel!.text = "Found something"
             
@@ -79,5 +90,25 @@ class PermissionsViewController: UIViewController, UITableViewDataSource {
             
             return cell
         }
+    }
+    
+    // MARK: - Helper Methods
+    
+    func performSearch() {
+        println("Search started")
+        userSearch.performSearchForText(searchBar.text)
+        
+        tableView.reloadData()
+        searchBar.resignFirstResponder()
+    }
+}
+
+extension PermissionsViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        performSearch()
+    }
+    
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return .TopAttached
     }
 }
