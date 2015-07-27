@@ -37,9 +37,6 @@
                         <state key="normal">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
-                        <connections>
-                            <action selector="addButton:" destination="Dbz-xP-IIY" eventType="touchUpInside" id="7nl-Bt-lW2"/>
-                        </connections>
                     </button>
                 </subviews>
                 <constraints>
@@ -61,6 +58,7 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
+                <outlet property="addButton" destination="hey-l2-Dyq" id="YSg-Ke-6BX"/>
                 <outlet property="displayName" destination="jgI-MI-6Wy" id="kfs-lS-z0F"/>
                 <outlet property="emailAddress" destination="vll-Mg-4Hi" id="5DM-LK-HAs"/>
             </connections>

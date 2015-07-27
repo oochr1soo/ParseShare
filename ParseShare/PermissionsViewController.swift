@@ -83,12 +83,43 @@ class PermissionsViewController: UIViewController, UITableViewDataSource {
         case .Results(let list):
             let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellIdentifiers.searchResultCell, forIndexPath: indexPath) as! SearchResultCell
             
-//            cell.textLabel!.text = "Found something"
+            cell.addButton.tag = indexPath.row
+            cell.addButton.addTarget(self, action: "addButtonPressed:", forControlEvents: .TouchUpInside)
             
             let searchResult = list[indexPath.row]
             cell.configureForSearchResult(searchResult)
             
             return cell
+        }
+    }
+    
+    func addButtonPressed(sender: UIButton) {
+        // Create invite
+        
+        let indexPath = NSIndexPath(forRow: sender.tag, inSection: 0)
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! SearchResultCell
+        
+        println("addButtonPressed for Tag: \(sender.tag) with Email Address: \(cell.emailAddress.text)")
+        
+        var query = PFQuery(className:"_User")
+        query.whereKey("username", equalTo: cell.emailAddress.text!)
+        let results = query.findObjects()
+        if let results = results {
+            if results.count == 1 {
+                for result in results {
+                    let invite = Invites(inviteFromUser: PFUser.currentUser()!, inviteToUser: result.objectId!!, pending: true)
+                    
+                    invite.saveInBackgroundWithBlock { (succeeded, error) -> Void in
+                        if succeeded {
+                            println("Successfully Invited")
+                            
+                            // Change button to Invited, disabled
+                        } else {
+                            println(error)
+                        }
+                    }
+                }
+            }
         }
     }
     

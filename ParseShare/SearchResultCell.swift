@@ -12,6 +12,7 @@ class SearchResultCell: UITableViewCell {
 
     @IBOutlet weak var emailAddress: UILabel!
     @IBOutlet weak var displayName: UILabel!
+    @IBOutlet weak var addButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,10 +25,10 @@ class SearchResultCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    @IBAction func addButton(sender: UIButton) {
-        // Create invite 
-        let invite = Invites(inviteFromUser: PFUser.currentUser(), inviteToUser: "userid", pending: true)
-        
+    func addButtonPressed(sender: UIButton) {
+        // Create invite
+        //let invite = Invites(inviteFromUser: PFUser.currentUser()!, inviteToUser: "userid", pending: true)
+        println("addButtonPressed for Tag: \(sender.tag)")
         // Change button to Invited, disabled
     }
     
