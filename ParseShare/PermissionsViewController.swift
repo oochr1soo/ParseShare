@@ -61,8 +61,8 @@ class PermissionsViewController: UIViewController, UITableViewDataSource {
             return 1
         case .Loading:
             return 1
-        case .Results:
-            return 1
+        case .Results(let list):
+            return list.count
         }
     }
     
@@ -76,17 +76,17 @@ class PermissionsViewController: UIViewController, UITableViewDataSource {
         case .Loading:
             let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellIdentifiers.loadingCell, forIndexPath: indexPath) as! UITableViewCell
             
-//            let spinner = cell.viewWithTag(100) as! UIActivityIndicatorView
-//            spinner.startAnimating()
+            let spinner = cell.viewWithTag(100) as! UIActivityIndicatorView
+            spinner.startAnimating()
             
             return cell
         case .Results(let list):
             let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellIdentifiers.searchResultCell, forIndexPath: indexPath) as! SearchResultCell
             
-            cell.textLabel!.text = "Found something"
+//            cell.textLabel!.text = "Found something"
             
-            //let searchResult = list[indexPath.row]
-            //cell.configureForSearchResult(searchResult)
+            let searchResult = list[indexPath.row]
+            cell.configureForSearchResult(searchResult)
             
             return cell
         }
@@ -96,7 +96,11 @@ class PermissionsViewController: UIViewController, UITableViewDataSource {
     
     func performSearch() {
         println("Search started")
-        userSearch.performSearchForText(searchBar.text)
+        userSearch.performSearchForText(searchBar.text, completion: { success in
+        
+        self.tableView.reloadData()
+            
+        })
         
         tableView.reloadData()
         searchBar.resignFirstResponder()

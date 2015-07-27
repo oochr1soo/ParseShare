@@ -26,5 +26,13 @@ class SearchResultCell: UITableViewCell {
 
     @IBAction func addButton(sender: UIButton) {
         // Create invite 
+        let invite = Invites(inviteFromUser: PFUser.currentUser(), inviteToUser: "userid", pending: true)
+        
+        // Change button to Invited, disabled
+    }
+    
+    func configureForSearchResult(searchResult: UserSearchResult) {
+        emailAddress.text = searchResult.emailAddress
+        displayName.text = searchResult.displayName
     }
 }
