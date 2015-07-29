@@ -28,5 +28,10 @@ class SearchResultCell: UITableViewCell {
     func configureForSearchResult(searchResult: UserSearchResult) {
         emailAddress.text = searchResult.emailAddress
         displayName.text = searchResult.displayName
+        
+        if searchResult.invited == true {
+            // Show Pending Text
+            addButton.tintColor = UIColor.redColor()
+        }
     }
 }

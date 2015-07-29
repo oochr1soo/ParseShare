@@ -21,6 +21,7 @@ class UserSearch {
     }
     
     private(set) var state: State = .NotSearchedYet
+    var pendingInvite = false
     
     func performSearchForText(text: String, completion: SearchComplete) {
         state = .Loading
@@ -60,15 +61,23 @@ class UserSearch {
                                 // Query invites table to see if they already are accepted with user
                                 // or if a pending invite exists
                                 // Set invite or accepted respectively
+                                var invitedQuery = PFQuery(className: "Invites")
+                                invitedQuery.whereKey("pending", equalTo: true)
+                                invitedQuery.whereKey("inviteToUser", equalTo: result.objectId!!)
+                                var invitedQueryResults = invitedQuery.findObjects()
+                                if invitedQueryResults?.count > 0 {
+                                    self.pendingInvite = true
+                                }
+                                
                                 searchResult.displayName = result["displayName"] as! String
                                 searchResult.emailAddress = result["username"] as! String
                                 searchResult.inviteUserID = result.objectId!!
-                                searchResult.invited = false
+                                searchResult.invited = self.pendingInvite
                                 searchResult.accepted = false
                                 userSearchResults.append(searchResult)
                             }
                         }
-                        
+
                         if userSearchResults.count > 0 {
                             self.state = .Results(userSearchResults)
                         } else {
