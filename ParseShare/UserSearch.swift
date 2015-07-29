@@ -43,24 +43,38 @@ class UserSearch {
                 // Found results
                 // Set Result state to either Results or NoResults
                 if let results = results {
-                    println(results)
+                    //println(results)
                     if results.count == 0 {
                         self.state = .NoResults
                     } else {
                         // Read Results into UserSearchResult Array
+                        // Dont show self in results
+                        // If user has already accepted a request, dont show
+                        // If they have already invited, show Pending instead of button
                     
                         var userSearchResults = [UserSearchResult]()
+                        var searchResult = UserSearchResult()
                         
                         for result in results {
-                            var searchResult = UserSearchResult()
-                            searchResult.displayName = result["displayName"] as! String
-                            searchResult.emailAddress = result["username"] as! String
-                            searchResult.inviteUserID = result.objectId!!
-                            searchResult.invited = false
-                            userSearchResults.append(searchResult)
-                            
-                            self.state = .Results(userSearchResults)
+                            if result.objectId != PFUser.currentUser()?.objectId {
+                                // Query invites table to see if they already are accepted with user
+                                // or if a pending invite exists
+                                // Set invite or accepted respectively
+                                searchResult.displayName = result["displayName"] as! String
+                                searchResult.emailAddress = result["username"] as! String
+                                searchResult.inviteUserID = result.objectId!!
+                                searchResult.invited = false
+                                searchResult.accepted = false
+                                userSearchResults.append(searchResult)
+                            }
                         }
+                        
+                        if userSearchResults.count > 0 {
+                            self.state = .Results(userSearchResults)
+                        } else {
+                            self.state = .NoResults
+                        }
+                        
                     }
                         success = true
                     }

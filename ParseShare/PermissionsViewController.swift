@@ -103,22 +103,27 @@ class PermissionsViewController: UIViewController, UITableViewDataSource {
         
         var query = PFQuery(className:"_User")
         query.whereKey("username", equalTo: cell.emailAddress.text!)
-        let results = query.findObjects()
-        if let results = results {
-            if results.count == 1 {
-                for result in results {
-                    let invite = Invites(inviteFromUser: PFUser.currentUser()!, inviteToUser: result.objectId!!, pending: true)
-                    
-                    invite.saveInBackgroundWithBlock { (succeeded, error) -> Void in
-                        if succeeded {
-                            println("Successfully Invited")
+        query.findObjectsInBackgroundWithBlock { (results, error) -> Void in
+            if error == nil {
+                if let results = results {
+                    if results.count == 1 {
+                        for result in results {
+                            let invite = Invites(inviteFromUser: PFUser.currentUser()!, inviteToUser: result.objectId!!, pending: true, accepted: false)
                             
-                            // Change button to Invited, disabled
-                        } else {
-                            println(error)
+                            invite.saveInBackgroundWithBlock { (succeeded, error) -> Void in
+                                if succeeded {
+                                    println("Successfully Invited")
+                            
+                                    // Change button to Invited, disabled
+                                } else {
+                                    println(error)
+                                }
+                            }
                         }
                     }
                 }
+            } else {
+                println(error)
             }
         }
     }

@@ -13,4 +13,5 @@ class UserSearchResult {
     var displayName: String = ""
     var inviteUserID: String = ""
     var invited: Bool = false
+    var accepted: Bool = false
 }
