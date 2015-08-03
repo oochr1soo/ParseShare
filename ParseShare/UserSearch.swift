@@ -58,17 +58,7 @@ class UserSearch {
                         var searchResult = UserSearchResult()
                         
                         for result in results {
-                            // Query invites table to see if they already are accepted with user
-                            // or if a pending invite exists
-                            // Set invite or accepted respectively
-                            var invitedQuery = PFQuery(className: "Invites")
-                            invitedQuery.whereKey("pending", equalTo: true)
-                            invitedQuery.whereKey("inviteToUser", equalTo: result.objectId!!)
-                            var invitedQueryResults = invitedQuery.findObjects()
-                            if invitedQueryResults?.count > 0 {
-                                self.pendingInvite = true
-                            }
-                                
+                            println(result)
                             searchResult.displayName = result["displayName"] as! String
                             searchResult.emailAddress = result["username"] as! String
                             searchResult.inviteUserID = result.objectId!!
