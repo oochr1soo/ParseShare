@@ -37,6 +37,7 @@ class UserSearch {
         containsUsername.whereKey("objectId", notEqualTo: PFUser.currentUser()!.objectId!)
         
         var query = PFQuery.orQueryWithSubqueries([containsUsername, containsDisplayName])
+        query.includeKey("inviteFromUser")
         query.findObjectsInBackgroundWithBlock {
             (results: [AnyObject]?, error: NSError?) -> Void in
             //self.state = .NotSearchedYet
@@ -55,10 +56,10 @@ class UserSearch {
                         // If they have already invited, show Pending instead of button
                     
                         var userSearchResults = [UserSearchResult]()
-                        var searchResult = UserSearchResult()
                         
                         for result in results {
                             println(result)
+                            var searchResult = UserSearchResult()
                             searchResult.displayName = result["displayName"] as! String
                             searchResult.emailAddress = result["username"] as! String
                             searchResult.inviteUserID = result.objectId!!

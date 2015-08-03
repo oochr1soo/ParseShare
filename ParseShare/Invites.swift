@@ -10,9 +10,7 @@ import Foundation
 
 class Invites: PFObject {
     @NSManaged var inviteFromUser: PFUser
-    @NSManaged var inviteToUser: String
-    @NSManaged var pending: Bool
-    @NSManaged var accepted: Bool
+    @NSManaged var invitedUsers: [String]
     
     override class func query() -> PFQuery? {
         let query = PFQuery(className: Invites.parseClassName())
@@ -20,13 +18,11 @@ class Invites: PFObject {
         return query
     }
     
-    init(inviteFromUser: PFUser, inviteToUser: String, pending: Bool, accepted: Bool) {
+    init(inviteFromUser: PFUser, inviteToUser: String) {
         super.init()
         
         self.inviteFromUser = inviteFromUser
-        self.inviteToUser = inviteToUser
-        self.pending = pending
-        self.accepted = accepted
+        self.invitedUsers.append(inviteToUser)
         
         let acl = PFACL()
         acl.setPublicReadAccess(false)

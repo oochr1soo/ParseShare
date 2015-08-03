@@ -107,19 +107,30 @@ class PermissionsViewController: UIViewController, UITableViewDataSource {
             if error == nil {
                 if let results = results {
                     if results.count == 1 {
-                        for result in results {
-                            let invite = Invites(inviteFromUser: PFUser.currentUser()!, inviteToUser: result.objectId!!, pending: true, accepted: false)
-                            
-                            invite.saveInBackgroundWithBlock { (succeeded, error) -> Void in
-                                if succeeded {
-                                    println("Successfully Invited")
-                            
-                                    // Change button to Invited, disabled
+                        let existingRecordQuery = PFQuery(className: "Invites")
+                        existingRecordQuery.whereKey("inviteFromUser", equalTo: PFUser.currentUser()!)
+                        existingRecordQuery.getFirstObjectInBackgroundWithBlock({ (existingResult, existingError) -> Void in
+                            if let existingResult = existingResult {
+                                if existingResult.count == 1 {
+                                    println("*** Record needs to be updated")
                                 } else {
-                                    println(error)
+                                    // Save new Record Instead of Update
+                                    for result in results {
+                                        let invite = Invites(inviteFromUser: PFUser.currentUser()!, inviteToUser: result.objectId!!)
+                                        
+                                        invite.saveInBackgroundWithBlock { (succeeded, error) -> Void in
+                                            if succeeded {
+                                                println("Successfully Invited")
+                                                
+                                                // Change button to Invited, disabled
+                                            } else {
+                                                println(error)
+                                            }
+                                        }
+                                    }
                                 }
                             }
-                        }
+                        })
                     }
                 }
             } else {
