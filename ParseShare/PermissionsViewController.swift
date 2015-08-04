@@ -110,24 +110,30 @@ class PermissionsViewController: UIViewController, UITableViewDataSource {
                         let existingRecordQuery = PFQuery(className: "Invites")
                         existingRecordQuery.whereKey("inviteFromUser", equalTo: PFUser.currentUser()!)
                         existingRecordQuery.getFirstObjectInBackgroundWithBlock({ (existingResult, existingError) -> Void in
-                            if let existingResult = existingResult {
-                                if existingResult.count == 1 {
-                                    println("*** Record needs to be updated")
-                                } else {
-                                    // Save new Record Instead of Update
-                                    for result in results {
-                                        let invite = Invites(inviteFromUser: PFUser.currentUser()!, inviteToUser: result.objectId!!)
-                                        
-                                        invite.saveInBackgroundWithBlock { (succeeded, error) -> Void in
-                                            if succeeded {
-                                                println("Successfully Invited")
-                                                
-                                                // Change button to Invited, disabled
-                                            } else {
-                                                println(error)
-                                            }
+                            if existingError != nil {
+                                println("*** getFirstObject Failed")
+                            } else if existingResult == nil {
+                                // Save new Record Instead of Update
+                                for result in results {
+                                    let invite = Invites(inviteFromUser: PFUser.currentUser()!, inviteToUser: result.objectId!!)
+                                    
+                                    invite.saveInBackgroundWithBlock { (succeeded, error) -> Void in
+                                        if succeeded {
+                                            println("Successfully Invited")
+                                            
+                                            // Change button to Invited, disabled
+                                        } else {
+                                            println(error)
                                         }
                                     }
+                                }
+                            } else {
+                                println("*** Record needs to be updated")
+                                
+                                for result in results {
+                                    println("**** Results \(result.objectId!!)")
+                                    existingResult!.addUniqueObjectsFromArray(["\(result.objectId!!)"], forKey:"invitedUsers")
+                                    existingResult!.saveInBackground()
                                 }
                             }
                         })
