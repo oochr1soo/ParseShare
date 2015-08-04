@@ -37,7 +37,6 @@ class UserSearch {
         containsUsername.whereKey("objectId", notEqualTo: PFUser.currentUser()!.objectId!)
         
         var query = PFQuery.orQueryWithSubqueries([containsUsername, containsDisplayName])
-        query.includeKey("inviteFromUser")
         query.findObjectsInBackgroundWithBlock {
             (results: [AnyObject]?, error: NSError?) -> Void in
             //self.state = .NotSearchedYet
@@ -47,7 +46,6 @@ class UserSearch {
                 // Found results
                 // Set Result state to either Results or NoResults
                 if let results = results {
-                    //println(results)
                     if results.count == 0 {
                         self.state = .NoResults
                     } else {
@@ -58,7 +56,6 @@ class UserSearch {
                         var userSearchResults = [UserSearchResult]()
                         
                         for result in results {
-                            println(result)
                             var searchResult = UserSearchResult()
                             searchResult.displayName = result["displayName"] as! String
                             searchResult.emailAddress = result["username"] as! String
