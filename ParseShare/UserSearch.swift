@@ -55,32 +55,23 @@ class UserSearch {
                         // If they have already invited, show Pending instead of button
                     
                         var userSearchResults = [UserSearchResult]()
-                        
+
                         for result in results {
                             var invitesQuery = PFQuery(className: "Invites")
                             invitesQuery.whereKey("inviteFromUser", equalTo: PFUser.currentUser()!)
                             invitesQuery.whereKey("invitedUsers", equalTo: result.objectId!!)
-                            invitesQuery.getFirstObjectInBackgroundWithBlock({ (invitesResult, error) -> Void in
-                                if invitesResult != nil {
-                                    println("*** Found invite record")
-                                    println("*** \(invitesResult)")
-                                    self.invited = true
-                                }
-                                
-                            })
+                            if invitesQuery.getFirstObject() != nil {
+                                println("*** Found invite record")
+                                self.invited = true
+                            }
                             
                             var acceptedQuery = PFQuery(className: "Invites")
                             acceptedQuery.whereKey("inviteFromUser", equalTo: PFUser.currentUser()!)
                             acceptedQuery.whereKey("acceptedUsers", equalTo: result.objectId!!)
-                            acceptedQuery.getFirstObjectInBackgroundWithBlock({ (acceptedResult, error) -> Void in
-                                if acceptedResult != nil {
-                                    println("*** Found Accepted Record")
-                                    println("*** \(acceptedResult)")
-                                    self.accepted = true
-                                }
-                            })
-                            
-                            println("*** self.invited = \(self.invited) and self.accepted = \(self.accepted)")
+                            if acceptedQuery.getFirstObject() != nil {
+                                println("*** Found Accepted Record")
+                                self.accepted = true
+                            }
                             
                             var searchResult = UserSearchResult()
                             searchResult.displayName = result["displayName"] as! String
@@ -90,8 +81,10 @@ class UserSearch {
                             searchResult.accepted = self.accepted
                             userSearchResults.append(searchResult)
                             
+                            println("*** self.invited = \(self.invited) and self.accepted = \(self.accepted)")
                         }
                         
+
                         if userSearchResults.count > 0 {
                             self.state = .Results(userSearchResults)
                         } else {
