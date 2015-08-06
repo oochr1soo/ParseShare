@@ -21,7 +21,8 @@ class UserSearch {
     }
     
     private(set) var state: State = .NotSearchedYet
-    var pendingInvite = false
+    var invited: Bool = false
+    var accepted: Bool = false
     
     func performSearchForText(text: String, completion: SearchComplete) {
         state = .Loading
@@ -56,21 +57,46 @@ class UserSearch {
                         var userSearchResults = [UserSearchResult]()
                         
                         for result in results {
+                            var invitesQuery = PFQuery(className: "Invites")
+                            invitesQuery.whereKey("inviteFromUser", equalTo: PFUser.currentUser()!)
+                            invitesQuery.whereKey("invitedUsers", equalTo: result.objectId!!)
+                            invitesQuery.getFirstObjectInBackgroundWithBlock({ (invitesResult, error) -> Void in
+                                if invitesResult != nil {
+                                    println("*** Found invite record")
+                                    println("*** \(invitesResult)")
+                                    self.invited = true
+                                }
+                                
+                            })
+                            
+                            var acceptedQuery = PFQuery(className: "Invites")
+                            acceptedQuery.whereKey("inviteFromUser", equalTo: PFUser.currentUser()!)
+                            acceptedQuery.whereKey("acceptedUsers", equalTo: result.objectId!!)
+                            acceptedQuery.getFirstObjectInBackgroundWithBlock({ (acceptedResult, error) -> Void in
+                                if acceptedResult != nil {
+                                    println("*** Found Accepted Record")
+                                    println("*** \(acceptedResult)")
+                                    self.accepted = true
+                                }
+                            })
+                            
+                            println("*** self.invited = \(self.invited) and self.accepted = \(self.accepted)")
+                            
                             var searchResult = UserSearchResult()
                             searchResult.displayName = result["displayName"] as! String
                             searchResult.emailAddress = result["username"] as! String
                             searchResult.inviteUserID = result.objectId!!
-                            searchResult.invited = self.pendingInvite
-                            searchResult.accepted = false
+                            searchResult.invited = self.invited
+                            searchResult.accepted = self.accepted
                             userSearchResults.append(searchResult)
+                            
                         }
-
+                        
                         if userSearchResults.count > 0 {
                             self.state = .Results(userSearchResults)
                         } else {
                             self.state = .NoResults
                         }
-                        
                     }
                         success = true
                     }
